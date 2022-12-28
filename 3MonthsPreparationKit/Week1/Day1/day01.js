@@ -72,13 +72,16 @@ function readLine() {
 function miniMaxSum(arr) {
   // Write your code here
   const sortArr = arr.sort()
-  let min = 0
-  let max = 0
+  const min = Math.min(...arr)
+  const max = Math.max(...arr)
 
-  sortArr.filter(value => value < Math.max(...sortArr)).forEach((num) => min += num)
-  
-  sortArr.filter(value => value > Math.min(...sortArr)).forEach((num) => max += num)
-  console.log(min, max)
+  let sum = 0
+  sortArr.forEach((num) => sum += num)
+
+  const sumMin = sum - min
+  const sumMax = sum - max
+
+  console.log(sumMax, sumMin)
 }
 
 function main() {
