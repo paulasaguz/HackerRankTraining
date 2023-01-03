@@ -67,8 +67,29 @@ function readLine() {
  */
 
 function timeConversion(s) {
-    // Write your code here
+  const date = s.replace(/PM|AM/g, '').split(':')
 
+  const hours = parseInt(date[0])
+  const minutes = date[1]
+  const seconds = date[2]
+
+  if (s.includes('PM')) {
+    if (hours < 12) {
+      const newPmHours = hours + 12
+      return `${newPmHours}:${minutes}:${seconds}`
+    }
+    if (hours == 12) {
+      return `${hours}:${minutes}:${seconds}`
+    }
+  } else if (s.includes('AM')) {
+    if (hours == 12) {
+      const newAmHours = hours - 12
+      return `${newAmHours.toString().padStart(2, '0')}:${minutes}:${seconds}`
+    }
+    if (hours < 12) {
+      return `${hours.toString().padStart(2, '0')}:${minutes}:${seconds}`
+    }
+  }
 }
 
 function main() {
